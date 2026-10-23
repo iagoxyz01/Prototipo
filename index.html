@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rede Solidária | Protótipo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" data-screen="inicio"><span class="brand-mark">RS</span><span>Rede Solidária<small>Protótipo acadêmico</small></span></a>
+    <div class="top-actions"><span class="demo-tag">DADOS FICTÍCIOS</span><button class="btn btn-outline" data-screen="inicio">Trocar perfil</button></div>
+  </header>
+
+  <main>
+    <section class="screen active" id="inicio">
+      <div class="welcome">
+        <span class="eyebrow">PROTÓTIPO DE BAIXA FIDELIDADE</span>
+        <h1>Conectando quem quer ajudar<br>com quem precisa de apoio.</h1>
+        <p>Uma demonstração de como doadores e organizações podem colaborar para organizar doações e acompanhar a destinação dos produtos.</p>
+      </div>
+      <div class="profile-grid">
+        <article class="profile-card">
+          <div class="wire-icon">D</div><h2>Área do doador</h2>
+          <p>Consulte necessidades, registre uma intenção de doação e acompanhe o status dos produtos.</p>
+          <button class="btn btn-primary" data-screen="doador-inicio">Entrar como doador <span>→</span></button>
+          <button class="text-btn" data-screen="cadastro">Criar cadastro de doador</button>
+        </article>
+        <article class="profile-card">
+          <div class="wire-icon">O</div><h2>Área da ONG</h2>
+          <p>Gerencie necessidades, receba produtos, faça inspeções, controle o estoque e registre destinações.</p>
+          <button class="btn btn-primary" data-screen="ong-painel">Entrar como ONG <span>→</span></button>
+          <p class="small-note">Acesso demonstrativo, sem autenticação real.</p>
+        </article>
+      </div>
+      <div class="flow-strip"><strong>Fluxo demonstrado</strong><span>Intenção</span><i>→</i><span>Recebimento</span><i>→</i><span>Inspeção</span><i>→</i><span>Estoque</span><i>→</i><span>Destinação</span></div>
+    </section>
+
+    <section class="screen" id="cadastro">
+      <button class="back-link" data-screen="inicio">← Voltar ao início</button>
+      <div class="form-card"><span class="eyebrow">ÁREA DO DOADOR</span><h1>Cadastro de doador</h1><p>Preencha os campos para simular o cadastro.</p>
+        <form id="register-form" class="form-grid">
+          <label>Nome completo<input required placeholder="Ex.: Marina Oliveira"></label>
+          <label>E-mail<input type="email" required placeholder="voce@exemplo.com"></label>
+          <label>Telefone<input placeholder="(00) 00000-0000"></label>
+          <label>Senha<input type="password" required placeholder="••••••••"></label>
+          <button class="btn btn-primary full" type="submit">Cadastrar e continuar</button>
+        </form><p class="small-note">Os dados não são enviados nem armazenados.</p>
+      </div>
+    </section>
+
+    <section class="screen" id="doador-inicio">
+      <div class="page-heading"><div><span class="eyebrow">ÁREA DO DOADOR</span><h1>Olá, Marina!</h1><p>Veja como você pode contribuir hoje.</p></div><button class="btn btn-outline" data-screen="inicio">Sair</button></div>
+      <div class="stats-grid"><div class="stat"><span>ONGs cadastradas</span><strong>08</strong></div><div class="stat"><span>Necessidades abertas</span><strong>14</strong></div><div class="stat"><span>Minhas intenções</span><strong id="my-count">02</strong></div></div>
+      <div class="section-heading"><h2>Necessidades em destaque</h2><button class="text-btn" data-screen="necessidades">Ver todas →</button></div>
+      <div class="content-grid">
+        <article class="item-card"><div class="item-top"><span class="category">ALIMENTOS</span><span class="status status-open">Aberta</span></div><h3>Arroz (pacote de 5 kg)</h3><p>ONG Mãos Unidas</p><div class="progress-label"><span>Recebido: 12 de 40</span><strong>28 restantes</strong></div><div class="progress"><span style="width:30%"></span></div><button class="btn btn-dark" data-need="Arroz (pacote de 5 kg)" data-ong="ONG Mãos Unidas" data-screen="detalhe-necessidade">Ver necessidade</button></article>
+        <article class="item-card"><div class="item-top"><span class="category">HIGIENE</span><span class="status status-open">Aberta</span></div><h3>Sabonete (unidade)</h3><p>Instituto Novo Caminho</p><div class="progress-label"><span>Recebido: 18 de 60</span><strong>42 restantes</strong></div><div class="progress"><span style="width:30%"></span></div><button class="btn btn-dark" data-need="Sabonete (unidade)" data-ong="Instituto Novo Caminho" data-screen="detalhe-necessidade">Ver necessidade</button></article>
+      </div>
+      <div class="section-heading"><h2>Acesso rápido</h2></div><div class="quick-links"><button data-screen="necessidades">⌕ Consultar necessidades</button><button data-screen="minhas-doacoes">▤ Minhas doações</button></div>
+    </section>
+
+    <section class="screen" id="necessidades">
+      <div class="page-heading"><div><span class="eyebrow">ÁREA DO DOADOR</span><h1>Necessidades das ONGs</h1><p>Consulte os itens prioritários das organizações.</p></div><button class="btn btn-outline" data-screen="doador-inicio">← Início</button></div>
+      <div class="toolbar"><input id="need-search" placeholder="Buscar ONG ou produto..."><select id="need-filter"><option value="todos">Todas as categorias</option><option>Alimentos</option><option>Higiene</option><option>Limpeza</option></select></div>
+      <div class="table-wrap"><table id="needs-table"><thead><tr><th>Organização</th><th>Produto</th><th>Solicitado</th><th>Restante</th><th></th></tr></thead><tbody>
+        <tr data-category="Alimentos"><td>ONG Mãos Unidas</td><td>Arroz (pacote de 5 kg)</td><td>40 pacotes</td><td>28</td><td><button class="mini-btn" data-need="Arroz (pacote de 5 kg)" data-ong="ONG Mãos Unidas" data-screen="detalhe-necessidade">Detalhes</button></td></tr>
+        <tr data-category="Higiene"><td>Instituto Novo Caminho</td><td>Sabonete</td><td>60 unidades</td><td>42</td><td><button class="mini-btn" data-need="Sabonete" data-ong="Instituto Novo Caminho" data-screen="detalhe-necessidade">Detalhes</button></td></tr>
+        <tr data-category="Limpeza"><td>Casa Acolher</td><td>Detergente</td><td>30 unidades</td><td>17</td><td><button class="mini-btn" data-need="Detergente" data-ong="Casa Acolher" data-screen="detalhe-necessidade">Detalhes</button></td></tr>
+        <tr data-category="Alimentos"><td>ONG Mãos Unidas</td><td>Feijão (1 kg)</td><td>35 pacotes</td><td>11</td><td><button class="mini-btn" data-need="Feijão (1 kg)" data-ong="ONG Mãos Unidas" data-screen="detalhe-necessidade">Detalhes</button></td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="screen" id="detalhe-necessidade">
+      <button class="back-link" data-screen="necessidades">← Voltar às necessidades</button>
+      <div class="form-card"><span class="eyebrow">DETALHES DA NECESSIDADE</span><h1 id="detail-product">Arroz (pacote de 5 kg)</h1><p id="detail-ong">ONG Mãos Unidas</p>
+        <div class="detail-box"><div><span>Quantidade necessária</span><strong>40 pacotes</strong></div><div><span>Quantidade restante</span><strong>28 pacotes</strong></div><div><span>Entrega</span><strong>Seg–Sex, 9h às 16h</strong></div></div>
+        <form id="intent-form"><label>Quantidade que pretende doar<input id="intent-quantity" type="number" min="1" value="2" required></label><label>Observação (opcional)<textarea placeholder="Informações adicionais"></textarea></label><button class="btn btn-primary full" type="submit">Continuar para confirmação</button></form>
+      </div>
+    </section>
+
+    <section class="screen" id="confirmacao">
+      <div class="form-card"><div class="success-mark">✓</div><span class="eyebrow">CONFIRMAÇÃO</span><h1>Revise sua intenção</h1><p>Confira os dados antes de registrar.</p>
+        <div class="detail-box"><div><span>Produto</span><strong id="confirm-product">Arroz</strong></div><div><span>ONG de destino</span><strong id="confirm-ong">ONG Mãos Unidas</strong></div><div><span>Quantidade</span><strong id="confirm-quantity">2 unidades</strong></div></div>
+        <div class="notice"><strong>Entrega presencial</strong><p>Leve os produtos à ONG no endereço e horário informados pela organização. A doação só será concluída após o recebimento e a inspeção da equipe.</p><p><b>Endereço demonstrativo:</b> Rua das Flores, 120 — Centro.</p></div>
+        <button class="btn btn-primary full" id="confirm-intent">Confirmar intenção de doação</button><button class="btn btn-outline full space-top" data-screen="necessidades">Voltar e editar</button>
+      </div>
+    </section>
+
+    <section class="screen" id="minhas-doacoes">
+      <div class="page-heading"><div><span class="eyebrow">ÁREA DO DOADOR</span><h1>Minhas doações</h1><p>Acompanhe o andamento das suas intenções.</p></div><button class="btn btn-outline" data-screen="doador-inicio">← Início</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Produto</th><th>Quantidade</th><th>ONG</th><th>Situação</th></tr></thead><tbody id="donation-rows"><tr><td>Leite em pó</td><td>3 latas</td><td>Casa Acolher</td><td><span class="status status-ok">Aprovada</span></td></tr><tr><td>Arroz</td><td>2 pacotes</td><td>ONG Mãos Unidas</td><td><span class="status status-pending">Intenção registrada</span></td></tr></tbody></table></div>
+      <div class="notice"><strong>Como funciona?</strong><p>Intenção registrada → Recebida pela ONG → Em inspeção → Aprovada ou recusada. Apenas produtos aprovados entram no estoque.</p></div>
+    </section>
+
+    <section class="screen admin-screen" id="ong-painel">
+      <aside class="sidebar"><div class="side-brand">RS <span>Rede Solidária<small>Painel da ONG</small></span></div><nav>
+        <button class="side-link selected" data-screen="ong-painel">▦ <span>Painel geral</span></button><button class="side-link" data-screen="ong-necessidades">☷ <span>Necessidades</span></button><button class="side-link" data-screen="ong-recebimento">↓ <span>Recebimento</span></button><button class="side-link" data-screen="ong-inspecao">✓ <span>Inspeção</span></button><button class="side-link" data-screen="ong-estoque">▤ <span>Estoque</span></button><button class="side-link" data-screen="ong-familias">♙ <span>Famílias</span></button><button class="side-link" data-screen="ong-destinacao">↗ <span>Destinação</span></button>
+      </nav><button class="side-exit" data-screen="inicio">← Voltar ao início</button></aside>
+      <div class="admin-main"><div class="admin-heading"><div><span class="eyebrow">VISÃO GERAL</span><h1>Painel administrativo</h1><p>ONG Mãos Unidas · Dados de demonstração</p></div><div class="avatar">MU</div></div>
+        <div class="stats-grid"><div class="stat"><span>Doações recebidas</span><strong>128</strong><small>no total</small></div><div class="stat"><span>Produtos em estoque</span><strong>346</strong><small>unidades e pacotes</small></div><div class="stat"><span>Aguardando inspeção</span><strong>06</strong><small>precisam de análise</small></div><div class="stat"><span>Necessidades abertas</span><strong>12</strong><small>itens prioritários</small></div></div>
+        <div class="section-heading"><h2>Ações rápidas</h2></div><div class="admin-action-grid"><button data-screen="ong-recebimento"><b>＋</b><strong>Registrar recebimento</strong><span>Intenção ou doação presencial</span></button><button data-screen="ong-inspecao"><b>✓</b><strong>Inspecionar produtos</strong><span>Aprovar ou recusar itens</span></button><button data-screen="ong-estoque"><b>▤</b><strong>Consultar estoque</strong><span>Produtos aprovados disponíveis</span></button><button data-screen="ong-destinacao"><b>↗</b><strong>Registrar destinação</strong><span>Separar itens para uma família</span></button></div>
+        <div class="section-heading"><h2>Atividade recente</h2><button class="text-btn" data-screen="ong-recebimento">Ver recebimentos →</button></div><div class="table-wrap"><table><thead><tr><th>Registro</th><th>Produto</th><th>Data</th><th>Status</th></tr></thead><tbody><tr><td>#DOA-128</td><td>Arroz — 5 pacotes</td><td>23/10/2026</td><td><span class="status status-pending">Em inspeção</span></td></tr><tr><td>#DOA-127</td><td>Leite em pó — 3 latas</td><td>22/10/2026</td><td><span class="status status-ok">Aprovada</span></td></tr><tr><td>#DOA-126</td><td>Detergente — 10 unidades</td><td>21/10/2026</td><td><span class="status status-no">Recusada</span></td></tr></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="screen" id="ong-necessidades"><div class="admin-layout"><aside class="mini-sidebar"><b>RS · ONG</b><button data-screen="ong-painel">Painel</button><button class="selected" data-screen="ong-necessidades">Necessidades</button><button data-screen="ong-recebimento">Recebimento</button><button data-screen="ong-inspecao">Inspeção</button><button data-screen="ong-estoque">Estoque</button><button data-screen="ong-familias">Famílias</button><button data-screen="ong-destinacao">Destinação</button><button data-screen="inicio">Sair</button></aside><div class="admin-content"><div class="admin-heading"><div><span class="eyebrow">ADMINISTRAÇÃO</span><h1>Gestão de necessidades</h1><p>Cadastre e acompanhe os produtos prioritários.</p></div><button class="btn btn-primary" id="add-need">＋ Nova necessidade</button></div><div class="table-wrap"><table><thead><tr><th>Produto</th><th>Necessário</th><th>Recebido</th><th>Restante</th><th>Status</th><th>Ação</th></tr></thead><tbody id="need-admin-rows"><tr><td>Arroz (5 kg)</td><td>40</td><td>12</td><td>28</td><td><span class="status status-open">Aberta</span></td><td><button class="mini-btn edit-need">Editar</button></td></tr><tr><td>Sabonete</td><td>60</td><td>18</td><td>42</td><td><span class="status status-open">Aberta</span></td><td><button class="mini-btn edit-need">Editar</button></td></tr><tr><td>Leite em pó</td><td>25</td><td>25</td><td>0</td><td><span class="status status-ok">Concluída</span></td><td><button class="mini-btn close-need">Encerrar</button></td></tr></tbody></table></div><p class="small-note">Os botões simulam ações; nenhuma informação é persistida.</p></div></div></section>
+
+    <section class="screen" id="ong-recebimento"><div class="admin-layout"><aside class="mini-sidebar"><b>RS · ONG</b><button data-screen="ong-painel">Painel</button><button data-screen="ong-necessidades">Necessidades</button><button class="selected" data-screen="ong-recebimento">Recebimento</button><button data-screen="ong-inspecao">Inspeção</button><button data-screen="ong-estoque">Estoque</button><button data-screen="ong-familias">Famílias</button><button data-screen="ong-destinacao">Destinação</button><button data-screen="inicio">Sair</button></aside><div class="admin-content"><div class="admin-heading"><div><span class="eyebrow">ENTRADA DE PRODUTOS</span><h1>Recebimento de doações</h1><p>Registre intenções entregues e doações espontâneas.</p></div><button class="btn btn-primary" id="spontaneous">＋ Doação presencial</button></div><div class="table-wrap"><table><thead><tr><th>Código</th><th>Doador</th><th>Produto</th><th>Qtd.</th><th>Tipo</th><th>Ação</th></tr></thead><tbody id="receiving-rows"><tr><td>#DOA-128</td><td>Marina Oliveira</td><td>Arroz</td><td>5 pacotes</td><td>Com intenção</td><td><button class="mini-btn receive-btn">Registrar chegada</button></td></tr><tr><td>#DOA-129</td><td>Visitante</td><td>Sabonete</td><td>12 unidades</td><td>Espontânea</td><td><button class="mini-btn receive-btn">Registrar chegada</button></td></tr><tr><td>#DOA-130</td><td>João Santos</td><td>Detergente</td><td>6 unidades</td><td>Com intenção</td><td><button class="mini-btn receive-btn">Registrar chegada</button></td></tr></tbody></table></div><div class="notice"><strong>Importante</strong><p>Registrar a chegada não adiciona os produtos ao estoque. Primeiro é necessário realizar a inspeção.</p></div></div></div></section>
+
+    <section class="screen" id="ong-inspecao"><div class="admin-layout"><aside class="mini-sidebar"><b>RS · ONG</b><button data-screen="ong-painel">Painel</button><button data-screen="ong-necessidades">Necessidades</button><button data-screen="ong-recebimento">Recebimento</button><button class="selected" data-screen="ong-inspecao">Inspeção</button><button data-screen="ong-estoque">Estoque</button><button data-screen="ong-familias">Famílias</button><button data-screen="ong-destinacao">Destinação</button><button data-screen="inicio">Sair</button></aside><div class="admin-content"><div class="admin-heading"><div><span class="eyebrow">CONFERÊNCIA</span><h1>Inspeção de produtos</h1><p>Verifique as condições antes de aprovar a entrada no estoque.</p></div></div><div class="inspection-card"><div class="inspection-meta"><span class="status status-pending">Aguardando inspeção</span><span>#DOA-128</span></div><h2>Arroz — pacote de 5 kg</h2><p>Doadora: Marina Oliveira · Quantidade recebida: 5 pacotes</p><label>Observações<textarea id="inspection-note" placeholder="Ex.: embalagens íntegras, dentro da validade..."></textarea></label><label>Resultado<select id="inspection-result"><option value="approved">Aprovar produtos</option><option value="rejected">Recusar produtos</option></select></label><label id="reject-reason-label" class="hidden">Justificativa da recusa<textarea id="reject-reason" placeholder="Informe o motivo da recusa"></textarea></label><button class="btn btn-primary" id="save-inspection">Registrar resultado da inspeção</button></div><div class="notice"><strong>Regra do sistema</strong><p>Somente itens aprovados são disponibilizados para distribuição e contabilizados no estoque.</p></div></div></div></section>
+
+    <section class="screen" id="ong-estoque"><div class="admin-layout"><aside class="mini-sidebar"><b>RS · ONG</b><button data-screen="ong-painel">Painel</button><button data-screen="ong-necessidades">Necessidades</button><button data-screen="ong-recebimento">Recebimento</button><button data-screen="ong-inspecao">Inspeção</button><button class="selected" data-screen="ong-estoque">Estoque</button><button data-screen="ong-familias">Famílias</button><button data-screen="ong-destinacao">Destinação</button><button data-screen="inicio">Sair</button></aside><div class="admin-content"><div class="admin-heading"><div><span class="eyebrow">INVENTÁRIO</span><h1>Controle de estoque</h1><p>Consulte produtos aprovados e movimentações.</p></div></div><div class="stats-grid"><div class="stat"><span>Itens cadastrados</span><strong id="stock-total">346</strong></div><div class="stat"><span>Tipos de produto</span><strong>12</strong></div><div class="stat"><span>Movimentações no mês</span><strong>38</strong></div></div><div class="table-wrap"><table><thead><tr><th>Produto</th><th>Disponível</th><th>Unidade</th><th>Última movimentação</th><th>Origem</th></tr></thead><tbody id="stock-rows"><tr><td>Arroz</td><td>32</td><td>pacotes</td><td>23/10/2026</td><td>Doação aprovada</td></tr><tr><td>Leite em pó</td><td>18</td><td>latas</td><td>22/10/2026</td><td>Doação aprovada</td></tr><tr><td>Sabonete</td><td>74</td><td>unidades</td><td>22/10/2026</td><td>Doação aprovada</td></tr><tr><td>Detergente</td><td>25</td><td>unidades</td><td>20/10/2026</td><td>Doação aprovada</td></tr></tbody></table></div><p class="small-note">Produtos recusados não aparecem como estoque disponível.</p></div></div></section>
+
+    <section class="screen" id="ong-familias"><div class="admin-layout"><aside class="mini-sidebar"><b>RS · ONG</b><button data-screen="ong-painel">Painel</button><button data-screen="ong-necessidades">Necessidades</button><button data-screen="ong-recebimento">Recebimento</button><button data-screen="ong-inspecao">Inspeção</button><button data-screen="ong-estoque">Estoque</button><button class="selected" data-screen="ong-familias">Famílias</button><button data-screen="ong-destinacao">Destinação</button><button data-screen="inicio">Sair</button></aside><div class="admin-content"><div class="admin-heading"><div><span class="eyebrow">PÚBLICO ATENDIDO</span><h1>Gestão de famílias</h1><p>Cadastro simplificado e histórico de atendimento.</p></div><button class="btn btn-primary" id="add-family">＋ Cadastrar família</button></div><div class="table-wrap"><table><thead><tr><th>Código</th><th>Identificação</th><th>Pessoas no núcleo</th><th>Situação</th><th>Histórico</th></tr></thead><tbody id="family-rows"><tr><td>FAM-001</td><td>Família A.</td><td>4</td><td><span class="status status-ok">Ativa</span></td><td><button class="mini-btn history-btn">Consultar</button></td></tr><tr><td>FAM-002</td><td>Família B.</td><td>3</td><td><span class="status status-ok">Ativa</span></td><td><button class="mini-btn history-btn">Consultar</button></td></tr><tr><td>FAM-003</td><td>Família C.</td><td>5</td><td><span class="status status-pending">Em avaliação</span></td><td><button class="mini-btn history-btn">Consultar</button></td></tr></tbody></table></div><p class="small-note">A identificação foi reduzida para preservar a privacidade no protótipo.</p></div></div></section>
+
+    <section class="screen" id="ong-destinacao"><div class="admin-layout"><aside class="mini-sidebar"><b>RS · ONG</b><button data-screen="ong-painel">Painel</button><button data-screen="ong-necessidades">Necessidades</button><button data-screen="ong-recebimento">Recebimento</button><button data-screen="ong-inspecao">Inspeção</button><button data-screen="ong-estoque">Estoque</button><button data-screen="ong-familias">Famílias</button><button class="selected" data-screen="ong-destinacao">Destinação</button><button data-screen="inicio">Sair</button></aside><div class="admin-content"><div class="admin-heading"><div><span class="eyebrow">DISTRIBUIÇÃO</span><h1>Destinação de produtos</h1><p>Registre os itens entregues às famílias atendidas.</p></div></div><div class="form-card compact"><form id="destination-form"><label>Família beneficiada<select id="destination-family"><option>FAM-001 — Família A.</option><option>FAM-002 — Família B.</option><option>FAM-003 — Família C.</option></select></label><label>Produto disponível<select id="destination-product"><option value="Arroz">Arroz — 32 pacotes disponíveis</option><option value="Leite em pó">Leite em pó — 18 latas disponíveis</option><option value="Sabonete">Sabonete — 74 unidades disponíveis</option><option value="Detergente">Detergente — 25 unidades disponíveis</option></select></label><label>Quantidade a destinar<input id="destination-quantity" type="number" min="1" value="2" required></label><button class="btn btn-primary full" type="submit">Registrar destinação</button></form><p class="small-note">A quantidade não pode ultrapassar o estoque disponível.</p></div><div class="section-heading"><h2>Histórico de destinações</h2></div><div class="table-wrap"><table><thead><tr><th>Data</th><th>Família</th><th>Produto</th><th>Quantidade</th></tr></thead><tbody id="destination-history"><tr><td>22/10/2026</td><td>FAM-002</td><td>Leite em pó</td><td>2 latas</td></tr><tr><td>20/10/2026</td><td>FAM-001</td><td>Arroz</td><td>3 pacotes</td></tr></tbody></table></div></div></div></section>
+
+    <div class="toast" id="toast" role="status"></div>
+  </main>
+  <footer><span>Rede Solidária · Protótipo para apresentação acadêmica</span><span>Sem banco de dados · Interações demonstrativas</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
